@@ -4,31 +4,24 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>3D Love Scene</title>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
 </head>
 <body>
-    <script>
-        // Basic Three.js Scene
-        const scene = new THREE.Scene();
-        const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
-        const renderer = new THREE.WebGLRenderer();
-        renderer.setSize(window.innerWidth, window.innerHeight);
-        document.body.appendChild(renderer.domElement);
+    <a-scene background="color: #FFC0CB">
+        <!-- Glowing Heart -->
+        <a-entity position="0 1.5 -3">
+            <a-sphere radius="0.7" color="red" animation="property: scale; to: 1.2 1.2 1.2; dir: alternate; dur: 1000; loop: true">
+            </a-sphere>
+            <a-light type="point" color="red" intensity="2" position="0 2 -3"></a-light>
+        </a-entity>
 
-        // Adding a Red Heart
-        const geometry = new THREE.SphereGeometry(1, 32, 32);
-        const material = new THREE.MeshBasicMaterial({ color: 0xff0000 });
-        const heart = new THREE.Mesh(geometry, material);
-        scene.add(heart);
+        <!-- Floating Text -->
+        <a-text value="Forever in Love 💖" position="-1.5 2 -3" color="white" scale="2 2 2"></a-text>
 
-        camera.position.z = 5;
-
-        function animate() {
-            requestAnimationFrame(animate);
-            heart.rotation.y += 0.01;
-            renderer.render(scene, camera);
-        }
-        animate();
-    </script>
+        <!-- Camera -->
+        <a-entity position="0 1.6 0">
+            <a-camera></a-camera>
+        </a-entity>
+    </a-scene>
 </body>
 </html>
